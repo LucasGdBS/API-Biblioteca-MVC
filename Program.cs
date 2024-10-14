@@ -1,9 +1,10 @@
 using BibliotecaAPI.Data;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.EntityFrameworkCore.MySql;
-using DotNetEnv;
+using BibliotecaAPI.Services.Autor; 
 
-Env.Load();
+using DotNetEnv; // Lib para usar variáveis de ambiente
+
+Env.Load(); // Carrega as variaveis de ambiente dentro do código
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var connectionString = Environment.GetEnvironmentVariable("DefaultConnection");
+builder.Services.AddScoped<IAutorInterface, AutorService>(); // Adiciona o serviço de autor
 
+var connectionString = Environment.GetEnvironmentVariable("DefaultConnection"); // Puxa a variável de ambiente
 builder.Services.AddDbContext<AppDbContext>(options => 
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
