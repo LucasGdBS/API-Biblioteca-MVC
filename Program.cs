@@ -1,6 +1,7 @@
 using BibliotecaAPI.Data;
 using Microsoft.EntityFrameworkCore;
-using BibliotecaAPI.Services.Autor; 
+using BibliotecaAPI.Services.Autor;
+using BibliotecaAPI.Services.Livro;
 
 using DotNetEnv; // Lib para usar variáveis de ambiente
 
@@ -16,6 +17,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAutorInterface, AutorService>(); // Adiciona o serviço de autor
+builder.Services.AddScoped<ILivroInterface, LivroService>(); // Adiciona o serviço de Livro
 
 var connectionString = Environment.GetEnvironmentVariable("DefaultConnection"); // Puxa a variável de ambiente
 builder.Services.AddDbContext<AppDbContext>(options => 

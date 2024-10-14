@@ -5,9 +5,9 @@ namespace BibliotecaAPI.Models
 
         public Guid Id {get; init;} = Guid.NewGuid();
 
-        public string? Titulo {get; set;}
+        public required string Titulo {get; set;}
 
-        public AutorModel? Autor {get; set;}
+        public required AutorModel Autor {get; set;}
         
     }
 }
